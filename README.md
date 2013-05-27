@@ -10,9 +10,9 @@ Installaction
 
 ``pip install -e git+https://github.com/tomaszroszko/django-spokeaboutus.git#egg=django_spokeaboutus.git``
 
+*settings.py*
 
 ```
-settings.py
 
 INSTALED_APPS = (
     ...
@@ -21,8 +21,9 @@ INSTALED_APPS = (
 )
 ```
 
+*urls.py*
+
 ```
-urls.py
 
 urlpatterns = patterns('',
     ...
@@ -30,6 +31,8 @@ urlpatterns = patterns('',
     ...
 )
 ```
+
+*run commands*
 
 ```
 python manage.py syncdb
