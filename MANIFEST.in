@@ -1,0 +1,3 @@
+include README.md
+inslude AUTHORS
+recursive-include spokeaboutus/templates *

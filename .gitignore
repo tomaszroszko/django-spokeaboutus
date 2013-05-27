@@ -2,3 +2,9 @@
 *.pot
 *.pyc
 local_settings.py
+build
+dist
+django_spokeaboutus.egg-info/*
+.project
+.pydevproject
+.idea
