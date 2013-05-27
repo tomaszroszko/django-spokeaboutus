@@ -5,8 +5,8 @@ SpokeAboutUs is a django application to store and display short messages about
 your service
 
 
-Instalation
------------
+Installation
+------------
 
 ``pip install -e git+https://github.com/tomaszroszko/django-spokeaboutus.git#egg=django_spokeaboutus.git``
 
