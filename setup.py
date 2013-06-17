@@ -8,11 +8,16 @@ os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 
 setup(
     name='django-spokeaboutus',
-    version='0.1',
-    packages=['spokeaboutus'],
+    version='0.2',
+    packages=['spokeaboutus', 'spokeaboutus.migrations',
+              'spokeaboutus.contrib',
+              'spokeaboutus.contrib.twitter',
+              'spokeaboutus.contrib.facebook',
+              'spokeaboutus.management',
+              'spokeaboutus.management.commands'],
     include_package_data=True,
     license='BSD License',
-    description='A simple Django app to store and display what social media "spoke about site"',
+    description='A simple Django app to store and display what social media talk about site',
     long_description=README,
     url='https://github.com/tomaszroszko/django-spokeaboutus',
     author='Tomasz Roszko',
@@ -30,4 +35,8 @@ setup(
         'Topic :: Internet :: WWW/HTTP',
         'Topic :: Internet :: WWW/HTTP :: Dynamic Content',
         ],
+    install_requires = ['facebook-sdk == 0.4.0'],
+    dependency_links = [
+        "git+https://github.com/tweepy/tweepy.py#tweepy-dev"
+    ],
 )
