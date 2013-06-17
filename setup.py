@@ -13,6 +13,7 @@ setup(
               'spokeaboutus.contrib',
               'spokeaboutus.contrib.twitter',
               'spokeaboutus.contrib.facebook',
+              'spokeaboutus.contrib.instagram',
               'spokeaboutus.management',
               'spokeaboutus.management.commands'],
     include_package_data=True,

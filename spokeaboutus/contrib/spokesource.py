@@ -70,6 +70,9 @@ class SpokeMessage(object):
 
             #by default make it as unactive
             sau.is_active = False
-            sau.save()
+            try:
+                sau.save()
+            except Exception, e:
+                pass
         return sau
 

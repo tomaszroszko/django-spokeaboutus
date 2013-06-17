@@ -12,10 +12,10 @@ class SpokeSourceAdmin(admin.ModelAdmin):
 
 
 class SpokeAboutUsAdmin(admin.ModelAdmin):
-    list_display = ('author', 'about_us_admin', 'spoke_source', 'spoke_date',
+    list_display = ('spoke_source', 'author', 'about_us_admin', 'spoke_date',
                     'is_active', 'order')
     list_filter = ('is_active', 'spoke_source')
-    list_editable = ('is_active', 'order')
+    list_editable = ('is_active', 'order', 'author', 'spoke_date')
 
     def about_us_admin(self, obj):
         return truncatewords(obj.about_us, 20)
