@@ -1,6 +1,7 @@
 import hashlib
 import feedparser
 from dateutil import parser as date_parser
+from spokeaboutus.contrib.instagram.settings import DEFAULT_AUTHOR
 from spokeaboutus.contrib.spokesource import SpokeSource, SpokeMessage
 
 
@@ -27,7 +28,7 @@ class InstagramSource(SpokeSource):
         """
         return SpokeMessage(
             uid=hashlib.sha224(message['id']).hexdigest()[:50],
-            author='Uknowed',
+            author=DEFAULT_AUTHOR,
             about_us=unicode(message['title']),
             spoke_date=date_parser.parse(message['published']),
             image=message['media_content'][0]['url']
