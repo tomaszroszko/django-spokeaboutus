@@ -43,11 +43,13 @@ class FacebookSource(SpokeSource):
         """
             convert posts to standard message
         """
+        spoke_link = 'http://www.facebook.com/permalink.php?id=%s&v=wall&story_fbid=%s' %(message['from']['id'], message['id'].split('_')[1])
         return SpokeMessage(
             uid=message['id'],
             author=message['from']['name'],
             about_us=message.get('message', '') or message.get(
                 'description', ''),
             spoke_date=message['created_time'],
-            image=message.get('picture', None)
+            image=message.get('picture', None),
+            spoke_link=spoke_link
         )
