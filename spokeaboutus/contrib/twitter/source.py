@@ -13,28 +13,21 @@ class TwitterSource(SpokeSource):
     name = 'Twitter'
     slug = 'twitter'
 
-    def get_messages(self):
+    def get_messages_user(self, search):
         """
-            return tweets from twitter
+            return tweets from user account
         """
-        api = self.get_api()
+        return self.get_api().user_timeline(
+            user_id=search, count=20,
+            include_entities=True, include_rts=True)
 
-        messages = []
-
-        searches = map(lambda x: x.strip(),
-            self.spoke_source.search_query.split(','))
-
-        for search in searches:
-            if 'user:' in search:
-                query = search.replace('user:', '')
-                messages.extend(api.user_timeline(
-                    user_id=query, count=20,
-                    include_entities=True, include_rts=True))
-            else:
-                messages.extend(api.search(
-                    q=search,
-                    count=self.spoke_source.limit))
-        return messages
+    def get_messages_search(self, search):
+        """
+            return tweets by search param
+        """
+        return self.get_api().search(
+            q=search,
+            count=self.spoke_source.limit)
 
     def get_api(self):
         """

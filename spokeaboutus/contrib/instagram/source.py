@@ -13,14 +13,16 @@ class InstagramSource(SpokeSource):
     name = 'Instagram'
     slug = 'instagram'
 
-    def get_messages(self):
+    def get_messages_search(self, search):
         """
             return posts from fb
         """
         feed = 'http://instagram.com/tags/%s/feed/recent.rss' \
-               % self.spoke_source.search_query
+               % search
         return feedparser.parse(feed)['entries']
 
+    def get_messages_user(self, search):
+        return []
 
     def prepare_message(self, message):
         """
