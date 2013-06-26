@@ -32,12 +32,13 @@ class SpokeSource(object):
 class SpokeMessage(object):
 
     def __init__(self, uid, author=None, about_us=None, image=None,
-                 spoke_date=None):
+                 spoke_date=None, spoke_link=None):
         self.uid = uid
         self.author = author
         self.about_us = about_us
         self.image = image
         self.spoke_date = spoke_date
+        self.spoke_link = spoke_link
 
     def save(self, spoke_source):
         """
@@ -54,7 +55,8 @@ class SpokeMessage(object):
                 spoke_source = spoke_source,
                 author = self.author,
                 about_us = self.about_us,
-                spoke_date = self.spoke_date
+                spoke_date = self.spoke_date,
+                spoke_link = self.spoke_link
             )
             if self.image:
                 try:

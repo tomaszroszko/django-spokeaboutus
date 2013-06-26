@@ -59,6 +59,8 @@ class TwitterSource(SpokeSource):
             uid=message.id_str,
             author=message.user.name,
             about_us=message.text,
-            spoke_date=message.created_at
+            spoke_date=message.created_at,
+            spoke_link='https://twitter.com/%s/status/%s' % (
+                message.user.screen_name, message.id_str)
             #image=
         )
