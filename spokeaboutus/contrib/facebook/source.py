@@ -16,9 +16,21 @@ class FacebookSource(SpokeSource):
             return posts from fb
         """
         api = self.get_api()
-        messages = api.request('search',
-            args={'q': self.spoke_source.search_query, 'type': 'post'})
-        return messages['data']
+
+        messages = []
+
+        searches = map(lambda x: x.strip(),
+            self.spoke_source.search_query.split(','))
+
+        for search in searches:
+            if 'user:' in search:
+                query = search.replace('user:', '')
+                messages.extend(api.get_connections(query, 'feed')['data'])
+            else:
+                messages.extend(api.request('search',
+                    args={'q': search, 'type': 'post'})['data'])
+
+        return messages
 
     def get_api(self):
         """

@@ -18,9 +18,23 @@ class TwitterSource(SpokeSource):
             return tweets from twitter
         """
         api = self.get_api()
-        return api.search(
-            q=self.spoke_source.search_query,
-            count=self.spoke_source.limit)
+
+        messages = []
+
+        searches = map(lambda x: x.strip(),
+            self.spoke_source.search_query.split(','))
+
+        for search in searches:
+            if 'user:' in search:
+                query = search.replace('user:', '')
+                messages.extend(api.user_timeline(
+                    user_id=query, count=20,
+                    include_entities=True, include_rts=True))
+            else:
+                messages.extend(api.search(
+                    q=search,
+                    count=self.spoke_source.limit))
+        return messages
 
     def get_api(self):
         """

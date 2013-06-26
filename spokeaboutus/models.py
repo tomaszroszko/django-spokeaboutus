@@ -58,6 +58,8 @@ class SpokeAboutUs(models.Model):
     spoke_source_uid = models.CharField(_('Spoke Source UID'), max_length=255,
         editable=False)
     spoke_source = models.ForeignKey(SpokeSource)
+    spoke_link = models.CharField(_('Spoke link'), null=True, blank=True,
+        max_length=255)
 
     author = models.CharField(_('Author'), max_length=50)
     about_us = models.TextField(_('About us'))
