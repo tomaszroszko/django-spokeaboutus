@@ -52,7 +52,7 @@ class SpokeSource(object):
             search string.
             Overwrite to get list of messages that are match to search string
         """
-    raise NotImplementedError
+        raise NotImplementedError
 
     def prepare_message(self, message):
         raise NotImplementedError
