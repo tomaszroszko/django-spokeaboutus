@@ -1,3 +1,5 @@
 from django.conf import settings
 
-DEFAULT_AUTHOR = getattr(settings, 'INSTAGRAM_DEFAULT_AUTHOR', 'None')
+
+DEFAULT_AUTHOR = getattr(settings, 'INSTAGRAM_DEFAULT_AUTHOR', '')
+INSTAGRAM_ACCESS_TOKEN = settings.SPOKE_ABOUT_US_INSTAGRAM_ACCESS_TOKEN
