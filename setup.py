@@ -36,7 +36,8 @@ setup(
         'Topic :: Internet :: WWW/HTTP',
         'Topic :: Internet :: WWW/HTTP :: Dynamic Content',
         ],
-    install_requires = ['facebook-sdk == 0.4.0'],
+    install_requires = ['facebook-sdk == 0.4.0',
+                        'python-instagram == 0.8.0.'],
     dependency_links = [
         "git+https://github.com/tweepy/tweepy.py#tweepy-dev"
     ],
