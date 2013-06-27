@@ -22,11 +22,40 @@ class SpokeSource(object):
             message.save(spoke_source=self.spoke_source)
 
     def get_messages(self):
+        """
+           Get a list of messages to process
+        """
+        messages = []
+        searches = map(lambda x: x.strip(),
+                       self.spoke_source.search_query.split(','))
+
+        for search in searches:
+            if 'user:' in search:
+                query = search.replace('user:', '')
+                messages.extend(self.get_messages_user(query))
+            else:
+                messages.extend(self.get_messages_search(search))
+
+        return messages
+
+    def get_messages_user(self, search):
+        """
+            Must return list of messages from social channel. Depending on
+            search string.
+            Overwrite to get list of messages from user account
+        """
+        raise NotImplementedError
+
+    def get_messages_search(self, search):
+        """
+            Must return list of messages from social channel. Depending on
+            search string.
+            Overwrite to get list of messages that are match to search string
+        """
         raise NotImplementedError
 
     def prepare_message(self, message):
         raise NotImplementedError
-
 
 
 class SpokeMessage(object):
