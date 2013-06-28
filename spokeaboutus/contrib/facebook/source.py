@@ -1,6 +1,10 @@
 import facebook as fbsdk
 from spokeaboutus.contrib.spokesource import SpokeSource, SpokeMessage
-from .settings import FACEBOOK_ACCESS_TOKEN
+from .settings import FACEBOOK_CLIENT_ID, FACEBOOK_CLIENT_SECRET
+
+
+FACEBOOK_ACCESS_TOKEN = fbsdk.get_app_access_token(
+    FACEBOOK_CLIENT_ID, FACEBOOK_CLIENT_SECRET)
 
 
 class FacebookSource(SpokeSource):
@@ -35,7 +39,8 @@ class FacebookSource(SpokeSource):
         """
             convert posts to standard message
         """
-        spoke_link = 'http://www.facebook.com/permalink.php?id=%s&v=wall&story_fbid=%s' %(message['from']['id'], message['id'].split('_')[1])
+        l = 'http://www.facebook.com/permalink.php?id=%s&v=wall&story_fbid=%s'\
+             % (message['from']['id'], message['id'].split('_')[1])
         return SpokeMessage(
             uid=message['id'],
             author=message['from']['name'],
@@ -43,5 +48,5 @@ class FacebookSource(SpokeSource):
                 'description', ''),
             spoke_date=message['created_time'],
             image=message.get('picture', None),
-            spoke_link=spoke_link
+            spoke_link=l
         )

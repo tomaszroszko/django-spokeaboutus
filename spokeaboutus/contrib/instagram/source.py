@@ -4,8 +4,7 @@ import feedparser
 from dateutil import parser as date_parser
 from instagram.client import InstagramAPI
 
-from spokeaboutus.contrib.instagram.settings import (
-    DEFAULT_AUTHOR, INSTAGRAM_ACCESS_TOKEN)
+from spokeaboutus.contrib.instagram.settings import INSTAGRAM_ACCESS_TOKEN
 from spokeaboutus.contrib.spokesource import SpokeSource, SpokeMessage
 
 
@@ -18,7 +17,6 @@ class InstagramSource(SpokeSource):
     slug = 'instagram'
 
     def get_api(self):
-        print INSTAGRAM_ACCESS_TOKEN
         api = InstagramAPI(access_token=INSTAGRAM_ACCESS_TOKEN)
         return api
 
