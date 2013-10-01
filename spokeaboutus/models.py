@@ -68,6 +68,8 @@ class SpokeAboutUs(models.Model):
     spoke_date = models.DateTimeField(_('Spoke Date'), null=True, blank=True)
     order = models.IntegerField(_('Order'), default=0)
     is_active = models.BooleanField(_('Is Active'), default=True)
+    like_count = models.PositiveIntegerField(_('Like count'), null=True,
+                                             blank=True)
 
     objects = SpokeAboutUsManager()
 
